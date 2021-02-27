@@ -53,7 +53,8 @@ class RestaurantServiceTest {
         create_restaurant_with_two_menus();
 
         int initialNumberOfRestaurants = service.getRestaurants().size();
-        service.removeRestaurant("Amelie's cafe");
+        Restaurant removingRestaurantRecord = service.removeRestaurant("Amelie's cafe");
+        assertEquals("Amelie's cafe",removingRestaurantRecord.getName());
         assertEquals(initialNumberOfRestaurants - 1, service.getRestaurants().size());
     }
 
@@ -63,7 +64,6 @@ class RestaurantServiceTest {
 
         assertThrows(RestaurantNotFoundException.class, () -> service.removeRestaurant("Pantry d'or"));
 
-        service.removeRestaurant("test Restaurant");
     }
 
     @Test
@@ -71,7 +71,10 @@ class RestaurantServiceTest {
         create_restaurant_with_two_menus();
 
         int initialNumberOfRestaurants = service.getRestaurants().size();
-        service.addRestaurant("Pumpkin Tales", "Chennai", LocalTime.parse("12:00:00"), LocalTime.parse("23:00:00"));
+        Restaurant restaurantRecord = service.addRestaurant("Pumpkin Tales", "Chennai", LocalTime.parse("12:00:00"), LocalTime.parse("23:00:00"));
+        assertNotEquals("Amelie's cafe",restaurantRecord.getName());
+        assertEquals("Pumpkin Tales",restaurantRecord.getName());
+
         assertEquals(initialNumberOfRestaurants + 1, service.getRestaurants().size());
     }
     //<<<<<<<<<<<<<<<<<<<<ADMIN: ADDING & REMOVING RESTAURANTS>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -79,7 +82,7 @@ class RestaurantServiceTest {
     public void create_restaurant_with_two_menus(){
         LocalTime openingTime = LocalTime.parse("10:30:00");
         LocalTime closingTime = LocalTime.parse("22:00:00");
-        restaurant = new Restaurant("Amelie's cafe", "Chennai", openingTime, closingTime);
+        restaurant = service.addRestaurant("Amelie's cafe", "Chennai", openingTime, closingTime);
         restaurant.addToMenu("Sweet corn soup", 119);
         restaurant.addToMenu("Vegetable lasagne", 269);
     }

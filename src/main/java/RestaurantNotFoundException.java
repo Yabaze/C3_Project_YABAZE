@@ -1,5 +1,5 @@
-public class RestaurantNotFoundException extends Throwable {
-    public RestaurantNotFoundException(String restaurantName) {
-        super(restaurantName);
+public class RestaurantNotFoundException extends Throwable{
+    public RestaurantNotFoundException(String message) {
+        super(message);
     }
 }
