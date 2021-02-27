@@ -1,3 +1,4 @@
+import java.io.ByteArrayOutputStream;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,4 +71,21 @@ public class Restaurant {
         return name;
     }
 
+    public int getTotalOrderCost() {
+        //TODO()
+        return 0;
+    }
+
+    public ByteArrayOutputStream getSelectedMenus() {
+        //TODO()
+        return null;
+    }
+
+    public void selectFromMenu(String menuName) {
+        //TODO()
+    }
+
+    public void deSelectFromMenu(String menuName) {
+        //TODO()
+    }
 }
